@@ -55,13 +55,14 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-header">
-          <a href="cpanel.php" class="navbar-brand headerFont text-lg"><strong>ConfiguroWeb</strong></a>
+          <a href="cpanel.php" class="navbar-brand headerFont text-lg"><strong>México 4T</strong></a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">
           <ul class="nav navbar-nav">
             
              <li><a href="nomination.html"><span class="subFont"><strong>Lista de Nominados</strong></span></a></li>
+             <li><a href="lista_votantes.php"><span class="subFont"><strong>Lista de Votantes</strong></span></a></li>
             <li><a href="changePassword.php"><span class="subFont"><strong>Administrar Contraseñas</strong></span></a></li>
           
           </ul>
@@ -113,7 +114,7 @@
 
                   $idm_value= $IDM*10;
 
-                  echo "<strong>Iván Duque</strong><br>";
+                  echo "<strong>Andres Manuel Lopez Obrador</strong><br>";
                   echo "
                   <div class='progress'>
                     <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=\"$idm_value\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$idm_value."%'>
@@ -138,7 +139,7 @@
 
                   $gp_value= $GP*10;
 
-                  echo "<strong>Gustavo Petro</strong><br>";
+                  echo "<strong>Vladímir Putin</strong><br>";
                   echo "
                   <div class='progress'>
                     <div class='progress-bar progress-bar-primary' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$gp_value."%'>
@@ -163,7 +164,7 @@
 
                   $jms_value= $JMS*10;
 
-                  echo "<strong>Juan Manuel Santos</strong><br>";
+                  echo "<strong>Joseph Robinette Biden Jr.</strong><br>";
                   echo "
                   <div class='progress'>
                     <div class='progress-bar progress-bar-info' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$jms_value."%'>
@@ -188,7 +189,7 @@
 
                   $pv_value= $PV*10;
 
-                  echo "<strong>Paloma Valencia</strong><br>";
+                  echo "<strong>Kim Jong-un</strong><br>";
                   echo "
                   <div class='progress'>
                     <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$pv_value."%'>

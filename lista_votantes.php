@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,53 +77,69 @@
       </div> <!-- end of container -->
     </nav>
 
-    <div class="container" style="padding:100px;">
-      <div class="row">
-        <div class="col-sm-3">
-          <img src="images/amlo.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Andrés Manuel López Obrador</h4>
-          <h5 class="normalFont text-center">Nacido el 13 de noviembre de 1953), también conocido por sus iniciales AMLO , es un político mexicano que se desempeña como el 65 ° presidente de México desde el 1 de diciembre de 2018.</h5>
-          <hr>
-          <ul class="normalFont text-left">
-            <li>López Obrador se graduó de la Universidad Nacional Autónoma de México en 1986</li>
-            <li>2014 fundó el Movimiento de Regeneración Nacional (MORENA), que lideró hasta 2017.</li>            
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/Vladimir_Putin.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Vladímir Putin </h4>
-          <h5 class="normalFont text-center">Vladímir Putin nació el 7 de octubre de 1952 en Leningrado, hoy San Petersburgo.
-            <hr>
-            <ul class="text-left">
-              <li>Presidente de la Federación de Rusia: Desde el 7 de mayo de 2012</li>
-              <li>Educación: Cursó estudios en la Escuela Nº 193 de su ciudad natal. Licenciado en Derecho en la Universidad de San Petersburgo, donde dio clases con el que sería alcalde de la ciudad, Anatoli Sobchak.</li>
-            </ul>
-            
-          </h5>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/joe.jpg" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Joseph Robinette Biden Jr.</h4>
-          <h5 class="text-center normalFont">Es un político americano que es el número 46 y actual presidente de los Estados Unidos . Miembro del Partido Demócrata , se desempeñó como el 47 ° vicepresidente de 2009 a 2017 bajo Barack Obama y representó a Delaware en el Senado de los Estados Unidos de 1973 a 2009.</h5>
-          <hr>
-          <ul class="text-left">
-            <li>Nacido:nacido el 20 de noviembre de 1942.</li>
-            <li>Educación:  Biden estudió en la Universidad de Delaware antes de obtener su título de abogado en la Universidad de Syracuse en 1968</li>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+<h2>Lista de Votantes</h2>
+
+</div>
+
+    <div class="container">
+
+                  
+      <table class="table table-dark table-striped">
+        <?php
+ 
+          require 'config.php';
+           $conn = mysqli_connect($hostname, $username, $password, $database);
+           $consulta = "SELECT * FROM tbl_users ";
+
+           $datos = mysqli_query($conn, $consulta);
+
            
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <img src="images/Kim Jong-un.png" class="img img-thumbnail" style="width:200px;height:200px;" alt="">
-          <h4 class="normalFont text-center">Kim Jong-un</h4>
-          <h5 class="normalFont text-center">3.er Gobernante de Corea del Norte: Desde el 30 de diciembre de 2011</h5>
-          <hr>
-          <ul class="text-left normalFont">
-            <li>Nacio: nació en Pionyang el 8 de enero de 1984.</li>
-            <li>Educación:  Se cree que Kim Jong-un regresó hacia el año 2000 a Corea del Norte, donde se graduó, en 2007, en la Universidad Militar Kim Il Sung.</li>
-          </ul>
-        </div>
-      </div>
+        ?>
+        <thead>
+          <tr>
+            <th>Num.</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Email</th>
+            <th>Identificación de Votante</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <?php while ($fila=mysqli_fetch_assoc($datos)) {?>
+            <tr>
+              <td><?php  echo $fila['id']; ?></td>
+              <td><?php  echo $fila['full_name']; ?></td>
+              <td><?php  echo $fila['apellido']; ?></td>
+              <td><?php  echo $fila['edad']; ?></td>
+              <td><?php  echo $fila['email']; ?></td>
+              <td><?php  echo $fila['voter_id']; ?></td>
+              <td>
+                <a href="edit.php?id=<?php echo $fila["id"] ?>">
+                <img style="width: 30px; height: 30px;" src="images/icons8-editar.gif"/></a>
+
+              </td>
+              <td>
+                <a href="eliminar.php?id=<?php echo $fila["id"] ?>">
+                <img style="width: 30px; height: 30px;" src="images/icons8-eliminar.gif">
+                </a>
+              </td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
     </div>
+
+    <a href="excel.php" type="button" class="btn btn-success navbar-right navbar-btn">Exportar a Excel</a>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

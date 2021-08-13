@@ -56,7 +56,7 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-header">
-          <a href="cpanel.php" class="navbar-brand headerFont text-lg"><strong>ConfiguroWeb</strong></a>
+          <a href="cpanel.php" class="navbar-brand headerFont text-lg"><strong>México 4T</strong></a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">

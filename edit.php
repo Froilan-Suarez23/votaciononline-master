@@ -1,4 +1,20 @@
-  <!DOCTYPE html>
+<?php
+require 'config.php';
+$mysqli = mysqli_connect($hostname, $username, $password, $database);
+$id = $_GET["id"];
+$sentencia = $mysqli->prepare("SELECT id, full_name, apellido, edad, email, voter_id FROM tbl_users WHERE id = ?");
+$sentencia->bind_param("i", $id);
+$sentencia->execute();
+$resultado = $sentencia->get_result();
+# Obtenemos solo una fila, que será el videojuego a editar
+$file = $resultado->fetch_assoc();
+if (!$file) {
+    exit("No hay resultados para ese ID");
+}
+
+?>
+ 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -79,52 +95,32 @@
         <div class="col-sm-12" style="border:2px solid gray;">
           
           <div class="page-header">
-            <h2 class="specialHead">Elige tu Candidato.</h2>
-            <p class="normalFont">Prueba que eres un Votante Correcto<i class="fas fa-autoprefixer    "></i>.</p>
+            <h2 class="specialHead">Editar Datos de Votantes.</h2>
+            <p class="normalFont">Vereficación si los datos de votantes son correctos<i class="fas fa-autoprefixer    "></i>.</p>
           </div>
           
-          <form action="saveVote.php" method="POST">
+          <form action="update.php" method="POST">
           <div class="form-group">
+            <input type="hidden" id="id" name="id" value="<?php echo $file['id'] ?>" />
             <label>Nombre del Votante :</label><br>
             
-            <input type="text" name="voterName" title="Enter Your Full Name" placeholder="Ingresa su nombre" class="form-control" required/><br>
+            <input type="text" name="voterName" title="Enter Your Full Name" placeholder="Ingresa su nombre" class="form-control" value="<?php echo $file["full_name"]?>" required/><br>
 
             <label>Apellidos :</label><br>
             
-            <input type="text" name="apellName" title="Enter Your Full Name" placeholder="Ingresa su Apellidos" class="form-control" required/><br>
+            <input type="text" name="apellName" title="Enter Your Full Name" placeholder="Ingresa su Apellidos" class="form-control" value="<?php echo $file["apellido"]?>"  required/><br>
 
             <label>Edad:</label><br>
             
-            <input type="text" name="edadName" title="Enter Your Full Name" placeholder="Ingresa su edad" class="form-control" required/><br>
+            <input type="text" name="edadName" title="Enter Your Full Name" placeholder="Ingresa su edad" class="form-control" value="<?php echo $file["edad"]?>"  required/><br>
 
             <label>Identificación de correo electrónico registrada del votante :</label><br>
-            <input type="text" name="voterEmail" placeholder="Ingresa tu correo" class="form-control"/><br>
+            <input type="text" name="voterEmail" value="<?php echo $file["email"]?>"  placeholder="Ingresa tu correo" class="form-control"/><br>
 
             <label>Matrícula:</label><br>
-            <input id="id1" type="text" name="voterID" placeholder="Ingresa tu Matrícula" class="form-control" required/><br>
+            <input id="id1" type="text" value="<?php echo $file["voter_id"]?>"  name="voterID" placeholder="Ingresa tu Matrícula" class="form-control" required/><br>
             
-            <h3 class="normalFont">Seleccina uno de los siguientes:</h3>
-            <div class="radio">
-              <label for="">
-                <input type="radio" name="selectedCandidate" value="IDM"> <strong>Andres Manuel Lopez Obrador</strong>
-              </label><br>
-
-              <label for="">
-                <input type="radio" name="selectedCandidate" value="GP"> <strong>Vladímir Putin</strong> 
-              </label><br>
-              
-              <label for="">
-                <input type="radio" name="selectedCandidate" value="JMS"> <strong>Joseph Robinette Biden Jr.</strong>
-              </label><br>
-
-              <label for="">
-                <input type="radio" name="selectedCandidate" value="PV"> <strong>Kim Jong-un - Kim Jong Un</strong>
-              </label><br>
-              <br>
-              <hr>
-              <button type="submit" name="submit" class="btn btn-primary"><strong>Enviar</strong></button>
-              <button type="submit" class="btn btn-default">Declinar</button>
-            </div>
+            <button type="submit" name="submit" class="btn btn-primary"><strong>Guardar Actualización</strong></button>
           </div>
           </form>
 

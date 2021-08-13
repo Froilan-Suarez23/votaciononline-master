@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-header">
-          <a href="index.html" class="navbar-brand headerFont text-lg"><strong>eVoting</strong></a>
+          <a href="index.html" class="navbar-brand headerFont text-lg"><strong>Votante...</strong></a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">
@@ -91,12 +91,14 @@
           
 
 					if(isset($_POST["submit"])){
-					if(isset($_POST["voterName"]) && isset($_POST["voterEmail"]) && isset($_POST["voterID"]) && isset($_POST["selectedCandidate"]))
+					if(isset($_POST["voterName"]) && isset($_POST["apellName"]) && isset($_POST["edadName"]) && isset($_POST["voterEmail"]) && isset($_POST["voterID"]) && isset($_POST["selectedCandidate"]))
 					{
-						$name= test_input($_POST["voterName"]);
-						$email= test_input($_POST["voterEmail"]);
-						$voterID= test_input($_POST["voterID"]);
-						$selection= test_input($_POST["selectedCandidate"]);
+						$full_name = $_REQUEST["voterName"];
+            $apellido = $_REQUEST["apellName"];
+            $edad = $_REQUEST["edadName"];
+						$email = $_REQUEST["voterEmail"];
+						$voter_id = $_REQUEST["voterID"];
+						$voted_for= $_REQUEST["selectedCandidate"];
 					}
 				}
 				else
@@ -104,21 +106,21 @@
 					echo "<br>All Field Recquired";
 				}
 				
-       $DB_HOST= "localhost";
-       $DB_USER="root";
-       $DB_PASSWORD="";
-       $DB_NAME="db_evoting";
+        $hostname="localhost";
+				$username= "root";
+				$password= "";
+				$database="db_evoting";
 	
+        
 
-        $conn= mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME)
-        or die("Couldn't Connect to Database :");
+        $conn= mysqli_connect($hostname,$username,$password,$database);
 				
 
 
-				$sql= "INSERT INTO db_evoting.tbl_users VALUES(null,'".$name."','".$email."','".$voterID."','".$selection."');";
-					
+				$sql= "INSERT INTO tbl_users VALUES(0,'$full_name', '$apellido', '$edad', '$email','$voter_id','$voted_for')";
+				
 
-				if(mysqli_query($conn, $sql)){
+				if($conn->query($sql)=== TRUE){
 					echo "<img src='images/success.png' width='70' height='70'>";
 					echo "<h3 class='text-info specialHead text-center'><strong> Has votado satisfactoriamente.</strong></h3>";
 					echo "<a href='index.html' class='btn btn-primary'> <span class='glyphicon glyphicon-ok'></span> <strong> Finalizar</strong> </a>";
