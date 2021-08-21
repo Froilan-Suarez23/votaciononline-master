@@ -46,6 +46,7 @@
   <body>
     
   <div class="container">
+    <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
       <div class="container">
@@ -60,28 +61,28 @@
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">
           <ul class="nav navbar-nav">
-            
-             <li><a href="listaCandidatos.php"><span class="subFont"><strong>Lista de Nominados</strong></span></a></li>
-             <li><a href="lista_votantes.php"><span class="subFont"><strong>Lista de Votantes</strong></span></a></li>
-            <li><a href="changePassword.php"><span class="subFont"><strong>Administrar Contraseñas</strong></span></a></li>
-            <li><a href="Paticipante.php"><span class="subFont"><strong>Agregar Participantes</strong></span></a></li>          
-            <li><a href="reporte.php"><span class="subFont"><strong>Reporte</strong></span></a></li> 
+            <!-- 
+            <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
+            <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
+            <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
+          -->
           </ul>
           
-          
-          <span class="normalFont"><a href="index.html" class="btn btn-success navbar-right navbar-btn"><strong>Cerrar Sesión</strong></a></span></button>
+
+          <a href="cpanel.php"><button type="submit" class="btn btn-success navbar-right navbar-btn"><span class="normalFont"><strong>Panel Administrativo</strong></span></button></a>
         </div>
 
       </div> <!-- end of container -->
     </nav>
+  </div>
 
     <div class="container" style="padding:100px;">
       <div class="row">
         <div class="col-sm-12" style="border:2px solid gray;">
           
           <div class="page-header">
-            <h2 class="specialHead">Panel de Control</h2>
-            <p class="normalFont">Este es el panel administrativo.</p>
+            <h2 class="specialHead">Control de Reporte</h2>
+            <p class="normalFont"></p>
           </div>
           
           <div class="col-sm-12">
@@ -113,17 +114,11 @@
                       $IDM++;
                   }
 
-                  $idm_value= $IDM*10;
-
+                  $idm_value= $IDM*1;
+                  
 
                   echo "<strong>Andres Manuel Lopez Obrador</strong><br>";
-                  echo "
-                  <div class='progress'>
-                    <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=\"$idm_value\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$idm_value."%'>
-                      <span class='sr-only'>BJP</span>
-                    </div>
-                  </div>
-                  ";
+                  echo "<h3>total de Votantes: $idm_value</h3>";
                 }
 
                 // Gustavo Petro
@@ -139,15 +134,11 @@
                   }
 
 
-                  $gp_value= $GP*10;
+                  $gp_value= $GP*1;
 
                   echo "<strong>Vladímir Putin</strong><br>";
                   echo "
-                  <div class='progress'>
-                    <div class='progress-bar progress-bar-primary' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$gp_value."%'>
-                      <span class='sr-only'>BJP</span>
-                    </div>
-                  </div>
+                  <h3>total de Votantes: $gp_value</h3>
                   ";
                 }
 
@@ -164,15 +155,11 @@
                   }
 
 
-                  $jms_value= $JMS*10;
+                  $jms_value= $JMS*1;
 
                   echo "<strong>Joseph Robinette Biden Jr.</strong><br>";
                   echo "
-                  <div class='progress'>
-                    <div class='progress-bar progress-bar-info' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$jms_value."%'>
-                      <span class='sr-only'>BJP</span>
-                    </div>
-                  </div>
+                  <h3>total de Votantes: $jms_value</h3>
                   ";
                 }
 
@@ -189,15 +176,11 @@
                   }
 
 
-                  $pv_value= $PV*10;
+                  $pv_value= $PV*1;
 
                   echo "<strong>Kim Jong-un</strong><br>";
                   echo "
-                  <div class='progress'>
-                    <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style='width: ".$pv_value."%'>
-                      <span class='sr-only'>TMC</span>
-                    </div>
-                  </div>
+                  <h3>total de Votantes: $pv_value</h3>
                   ";
                 }
 
@@ -233,6 +216,8 @@
           </div>
 
         </div>
+
+        <a href="cn.php">Reporte</a>
       </div>
     </div>
   </div>

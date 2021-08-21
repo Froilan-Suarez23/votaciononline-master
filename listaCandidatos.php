@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,9 +46,9 @@
     <![endif]-->
   </head>
   <body>
-	
-	<div class="container">
-  	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
+  
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-nav-collapse">
@@ -67,7 +66,7 @@
             <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
             <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
             <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
-        	-->
+          -->
           </ul>
           
 
@@ -76,7 +75,6 @@
 
       </div> <!-- end of container -->
     </nav>
-  </div>
 
 <br>
 <br>
@@ -85,7 +83,7 @@
 
 <div class="container">
 
-<h2>Lista de Votantes</h2>
+<h2>Lista de Candidatos</h2>
 
 </div>
 
@@ -97,7 +95,7 @@
  
           require 'config.php';
            $conn = mysqli_connect($hostname, $username, $password, $database);
-           $consulta = "SELECT * FROM tbl_users ";
+           $consulta = "SELECT * FROM candidatos  ";
 
            $datos = mysqli_query($conn, $consulta);
 
@@ -108,9 +106,6 @@
             <th>Num.</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Edad</th>
-            <th>Email</th>
-            <th>Identificación de Votante</th>
             <th></th>
           </tr>
         </thead>
@@ -119,28 +114,23 @@
           <?php while ($fila=mysqli_fetch_assoc($datos)) {?>
             <tr>
               <td><?php  echo $fila['id']; ?></td>
-              <td><?php  echo $fila['full_name']; ?></td>
+              <td><?php  echo $fila['nombre']; ?></td>
               <td><?php  echo $fila['apellido']; ?></td>
-              <td><?php  echo $fila['edad']; ?></td>
-              <td><?php  echo $fila['email']; ?></td>
-              <td><?php  echo $fila['voter_id']; ?></td>
               <td>
-                <a href="edit.php?id=<?php echo $fila["id"] ?>">
-                <img style="width: 30px; height: 30px;" src="images/icons8-editar.gif"/></a>
+                <a href="candidatos.php?id=<?php echo $fila["id"] ?>">Ver más</a>
 
-              </td>
-              <td>
-                <a href="eliminar.php?id=<?php echo $fila["id"] ?>">
-                <img style="width: 30px; height: 30px;" src="images/icons8-eliminar.gif">
-                </a>
               </td>
             </tr>
           <?php } ?>
-        </tbody>
+        </tbody> 
       </table>
     </div>
 
-    <a href="excel.php" type="button" class="btn btn-success navbar-right navbar-btn">Exportar a Excel</a>
+    <div class="col-sm-4">
+    <button type="button"class="btn btn-primary btn-block">
+      <a class="bg-primary" href="cpanel.php">Regresar</a>
+    </button>
+  </div>
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

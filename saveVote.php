@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>votar</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -115,9 +115,11 @@
 
         $conn= mysqli_connect($hostname,$username,$password,$database);
 				
+        $var=mysqli_insert_id($conn);
 
 
-				$sql= "INSERT INTO tbl_users VALUES(0,'$full_name', '$apellido', '$edad', '$email','$voter_id','$voted_for')";
+				$sql= "INSERT INTO tbl_users (id, full_name, apellido, edad, email, voter_id,voted_for) VALUES(0,'$full_name', '$apellido', '$edad', '$email','$voter_id','$voted_for')";
+
 				
 
 				if($conn->query($sql)=== TRUE){

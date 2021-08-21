@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,9 +45,9 @@
     <![endif]-->
   </head>
   <body>
-	
-	<div class="container">
-  	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
+  
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-nav-collapse">
@@ -67,7 +65,7 @@
             <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
             <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
             <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
-        	-->
+          -->
           </ul>
           
 
@@ -76,7 +74,6 @@
 
       </div> <!-- end of container -->
     </nav>
-  </div>
 
 <br>
 <br>
@@ -85,62 +82,72 @@
 
 <div class="container">
 
-<h2>Lista de Votantes</h2>
+<h2>Datos de Candidato</h2>
 
 </div>
 
     <div class="container">
 
+      <?php
+      require 'config.php';
+      $mysqli = mysqli_connect($hostname, $username, $password, $database);
+      $id = $_GET["id"];
+      $sentencia = $mysqli->prepare("SELECT id, nombre, apellido, edad, matricula, email, ciudad, aspira, celular, descrip FROM candidatos WHERE id = ?");
+      $sentencia->bind_param("i", $id);
+      $sentencia->execute();
+      $resultado = $sentencia->get_result();
+      # Obtenemos solo una fila, que será el videojuego a editar
+      $file = $resultado->fetch_assoc();
+      if (!$file) {
+          exit("No hay resultados para ese ID");
+      }
+
+      ?>
+
                   
-      <table class="table table-dark table-striped">
-        <?php
- 
-          require 'config.php';
-           $conn = mysqli_connect($hostname, $username, $password, $database);
-           $consulta = "SELECT * FROM tbl_users ";
-
-           $datos = mysqli_query($conn, $consulta);
-
-           
-        ?>
-        <thead>
-          <tr>
-            <th>Num.</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>Email</th>
-            <th>Identificación de Votante</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php while ($fila=mysqli_fetch_assoc($datos)) {?>
-            <tr>
-              <td><?php  echo $fila['id']; ?></td>
-              <td><?php  echo $fila['full_name']; ?></td>
-              <td><?php  echo $fila['apellido']; ?></td>
-              <td><?php  echo $fila['edad']; ?></td>
-              <td><?php  echo $fila['email']; ?></td>
-              <td><?php  echo $fila['voter_id']; ?></td>
-              <td>
-                <a href="edit.php?id=<?php echo $fila["id"] ?>">
-                <img style="width: 30px; height: 30px;" src="images/icons8-editar.gif"/></a>
-
-              </td>
-              <td>
-                <a href="eliminar.php?id=<?php echo $fila["id"] ?>">
-                <img style="width: 30px; height: 30px;" src="images/icons8-eliminar.gif">
-                </a>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+        
+        
     </div>
 
-    <a href="excel.php" type="button" class="btn btn-success navbar-right navbar-btn">Exportar a Excel</a>
+     <div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h2><?php echo $file['nombre'] ?></div>
+      <div class="panel-body">
+        <?php echo $file['apellido'] ?>
+        <br>
+        <br>
+        <?php echo $file['edad'] ?>
+        <br>
+        <br>
+        <?php echo $file['matricula'] ?>
+        <br>
+        <br>
+        <?php echo $file['email'] ?>
+        <br>
+        <br>
+        <?php echo $file['ciudad'] ?>
+        <br>
+        <br>
+        <?php echo $file['aspira'] ?>
+        <br>
+        <br>
+        <?php echo $file['celular'] ?>
+        <br>
+        <br>
+        <?php echo $file['descrip'] ?>
+      </div>
+    </div>
+   
+  <div class="col-sm-4">
+    <button type="button"class="btn btn-primary btn-block">
+      <a class="bg-primary" href="listaCandidatos.php">Regresar</a>
+    </button>
+  </div>
+</div> 
+
+    
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
